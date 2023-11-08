@@ -34,7 +34,7 @@ print(song_name)
 
 def play_song(song_name):
     # Load the song from the switcher function
-    song_path = "/h31ome/ctis321/SoundboardCode/Christmas Music WAV/" + song_name
+    song_path = "Christmas Music WAV/" + song_name
     mixer.music.load(song_path)
     mixer.music.play()
 
