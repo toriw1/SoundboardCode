@@ -37,7 +37,8 @@ if song_name is not None:
     song_path = os.path.join(music_folder_path, song_name)
     mixer.music.load(song_path)
     mixer.music.play()
-    
+   
+ # Use arrow keys to change songs and 's' to stop the music   
 def on_press(key):
     global song_number, song_name, song_path
     if key == keyboard.Key.right:
@@ -60,9 +61,107 @@ def on_press(key):
             song_path = os.path.join(music_folder_path, song_name)
             mixer.music.load(song_path)
             mixer.music.play()
+    # Allow the user to also put input for song number while the music is playing
+    elif key == keyboard.KeyCode.from_char('1'):
+        song_number = 1
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path, song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('2'):
+        song_number = 2
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path, song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('3'):
+        song_number = 3
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path, song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('4'):
+        song_number = 4
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path, song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('5'):
+        song_number = 5
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path, song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('6'):
+        song_number = 6
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path, song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()  
+    elif key == keyboard.KeyCode.from_char('7'):
+        song_number = 7
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path, song_name) 
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('8'):
+        song_number = 8
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path,song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('9'):
+        song_number = 9
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path,song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('10'):
+        song_number = 10
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path,song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('11'):
+        song_number = 11
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path,song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
+    elif key == keyboard.KeyCode.from_char('12'):
+        song_number = 12
+        song_name = switcher(song_number)
+        if song_name is not None:
+            print(song_number, song_name)
+            song_path = os.path.join(music_folder_path,song_name)
+            mixer.music.load(song_path)
+            mixer.music.play()
     elif key == keyboard.KeyCode.from_char('s'):
         mixer.music.stop()
         return False  # Stop listener
+    
 
 # Start the event listener
 with keyboard.Listener(on_press=on_press) as listener:
