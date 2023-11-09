@@ -1,7 +1,7 @@
 import os
 import pygame
 from pygame import mixer
-import keyboard
+from pynput import keyboard
 
 # Initialize the mixer
 mixer.init()
@@ -15,13 +15,13 @@ def switcher(argument):
         1: "All I Want for Christmas Is You.wav",
         2: "Blue Christmas.wav",
         3: "Christmas (Baby Please Come Home).wav",
-        4: "Here Comes Santa Claus.wav",
-        5: "Holly Jolly Christmas.wav",
-        6: "Ill Be Home for Christmas.wav",
-        7: "Its Beginning to Look a Lot Like Christmas.wav",
-        8: "Jingle Bell Rock.wav",
-        9: "Last Christmas.wav",
-        10: "Santa Claus Is Comin to Town.wav",
+        4: "Feliz Navidad.wav",
+        5: "Here Comes Santa Claus.wav",
+        6: "Holly Jolly Christmas.wav",
+        7: "Ill Be Home for Christmas.wav",
+        8: "Its Beginning to Look a Lot Like Christmas.wav",
+        9: "Jingle Bell Rock.wav",
+        10: "Last Christmas.wav",
         11: "Santa Tell Me.wav",
         12: "Underneath the Tree.wav",
     }
@@ -38,9 +38,9 @@ if song_name is not None:
     mixer.music.load(song_path)
     mixer.music.play()
     
-while True:
-    # if right arrow key is pressed, increment song number by 1
-    if keyboard.is_pressed('right arrow'):
+def on_press(key):
+    global song_number, song_name, song_path
+    if key == keyboard.Key.right:
         song_number += 1
         song_name = switcher(song_number)
         if song_number > 12:
@@ -50,8 +50,7 @@ while True:
             song_path = os.path.join(music_folder_path, song_name)
             mixer.music.load(song_path)
             mixer.music.play()
-    # if left arrow key is pressed, decrement song number by 1
-    elif keyboard.is_pressed('left arrow'):
+    elif key == keyboard.Key.left:
         song_number -= 1
         if song_number < 1:
             song_number = 12
@@ -61,9 +60,10 @@ while True:
             song_path = os.path.join(music_folder_path, song_name)
             mixer.music.load(song_path)
             mixer.music.play()
-    # if s is pressed, stop the song
-    elif keyboard.is_pressed('s'):
+    elif key == keyboard.KeyCode.from_char('s'):
         mixer.music.stop()
-        break
-    else:
-        continue
+        return False  # Stop listener
+
+# Start the event listener
+with keyboard.Listener(on_press=on_press) as listener:
+    listener.join()
