@@ -43,9 +43,10 @@ def on_press(key):
     if key == keyboard.Key.right:
         song_number += 1
         song_name = switcher(song_number)
-        if song_number > 12:
-            song_number = 1
+        if song_number >= 12:
+            song_number = 0
         if song_name is not None:
+            print(song_number)
             print(song_name)
             song_path = os.path.join(music_folder_path, song_name)
             mixer.music.load(song_path)
