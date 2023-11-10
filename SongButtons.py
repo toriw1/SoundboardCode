@@ -37,7 +37,7 @@ if song_name is not None:
     song_path = os.path.join(music_folder_path, song_name)
     mixer.music.load(song_path)
     mixer.music.play()
-   
+
  # Use arrow keys to change songs and 's' to stop the music   
 def on_press(key):
     global song_number, song_name, song_path
