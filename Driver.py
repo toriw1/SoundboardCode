@@ -1,5 +1,5 @@
 import tkinter as tk
-from SongGUI import SongGUI  # Adjust the import based on your file structure
+from SongGUI import SongGUI  
 
 def main():
     gui = SongGUI()

@@ -84,16 +84,42 @@ class SongGUI(tk.Tk):
         elif event.keysym == 'Left':
             self.song_number = (self.song_number - 2) % 12 + 1
 
-        # Use a dictionary to handle numeric key presses
-        numeric_keys = {
-            str(i): i for i in range(1, 13)
-        }
+        key = event.char
 
-        if event.keysym in numeric_keys:
-            self.song_number = numeric_keys[event.keysym]
-
-        if event.keysym == 's':
+        if key.isdigit() and 1 <= int(key) <= 12:
+            self.song_number = int(key)
+        elif key.lower() == 's':
             pygame.mixer.music.stop()
+            return False  # Stop listener
+        else:
+            # Check for individual keys using event.char
+            if key == '1':
+                self.song_number = 1
+            elif key == '2':
+                self.song_number = 2
+            elif key == '3':
+                self.song_number = 3
+            elif key == '4':
+                self.song_number = 4
+            elif key == '5':
+                self.song_number = 5
+            elif key == '6':
+                self.song_number = 6
+            elif key == '7':
+                self.song_number = 7
+            elif key == '8':
+                self.song_number = 8
+            elif key == '9':
+                self.song_number = 9
+            elif key == '10':
+                # Handle '0' as '10'
+                self.song_number = 10
+            elif key.lower() == 'a':
+                # Handle 'a' as '11'
+                self.song_number = 11
+            elif key.lower() == 'b':
+                # Handle 'b' as '12'
+                self.song_number = 12
 
         # Play the song
         self.play_song()
