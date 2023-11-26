@@ -20,5 +20,8 @@ def main():
         # Stop LED thread when the GUI is closed
         led_thread_instance.join()
 
+    # Run Off.py when Led.py is closed
+    
+
 if __name__ == "__main__":
     main()

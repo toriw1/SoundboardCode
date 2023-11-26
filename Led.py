@@ -480,14 +480,6 @@ class LEDController:
                 self.animation_choice = 11
             elif key.lower() == 'b':
                 self.animation_choice = 12
-            elif key.lower() == 's':
-                self.animation_choice = self.LED_OFF  # Special value for turning off lights
-            elif key.lower() == 'q':
-                self.animation_choice = self.QUIT  # Special value for quitting
-            elif key.lower() == 'right':
-                self.animation_choice = (self.animation_choice % 12) + 1  # Increment
-            elif key.lower() == 'left':
-                self.animation_choice = (self.animation_choice - 2) % 12 + 1  # Decrement
             else:
                 print("Invalid choice. Try again.")
                 return
