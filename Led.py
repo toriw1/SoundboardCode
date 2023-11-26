@@ -452,18 +452,18 @@ class LEDController:
 
     def switcher(self, argument):
         switcher = {
-            1: (self.color_wipe, (Color(255, 0, 0),)),  # Red color wipe
-            2: (self.theater_chase, (Color(127, 127, 127),)),  # White theater chase
-            3: (self.sparkle, ()),
-            4: (self.snow, ()),
-            5: (self.color_blink, ([Color(255, 0, 0), Color(0, 255, 0), Color(255, 213, 0), Color(0, 0, 255)], 0.3)),
+            1: (self.color_wipe, (Color(255, 0, 0),)),
+            2: (self.sparkle, ()),
+            3: (self.festive_green, ()),
+            4: (self.color_blink, ([Color(255, 0, 0), Color(0, 255, 0), Color(255, 213, 0), Color(0, 0, 255)], 0.3)),
+            5: (self.santa, ()),
             6: (self.christmas_twinkle, ()),
             7: (self.winter_wonderland, ()),
-            8: (self.jingle_bells, ()),
-            9: (self.present, ()),
-            10: (self.santa, ()),
+            8: (self.snow, ()),
+            9: (self.jingle_bells, ()),
+            10: (self.theater_chase, (Color(127, 127, 127),)),
             11: (self.cute_sparkle, ([Color(255, 0, 25), Color(255, 255, 255), Color(255, 0, 183)], 0.4, 10)),
-            12: (self.festive_green, ()),
+            12: (self.present, ()),
         }
         return switcher.get(argument, (None, None))
 
