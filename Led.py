@@ -147,11 +147,12 @@ class LEDController:
 
     def snow(self, wait_ms=50, iterations=5):
         """Simulate falling snow effect with continuous movement."""
+        window = 3  # Size of the moving window
+
         for _ in range(iterations):
             if self.stop_animation:  # Check for interruption
                 break
 
-            window = 3  # Size of the moving window
             for i in range(self.strip.numPixels() - window, -1, -1):
                 # Reset the window by turning off all lights
                 for j in range(i, i + window):
@@ -166,6 +167,12 @@ class LEDController:
 
                 if self.stop_animation:  # Check for interruption
                     break
+
+            # Reset the strip by turning off all lights
+            for i in range(self.strip.numPixels()):
+                self.strip.setPixelColor(i, 0)
+            self.strip.show()
+            time.sleep(wait_ms / 1000.0)
 
     def color_blink(self, colors, wait_time, iterations=5):
         """Blink lights with specified colors at varying speeds."""
@@ -291,7 +298,7 @@ class LEDController:
             if self.stop_animation:  # Check for interruption
                 break
 
-    def present(self, wait_ms=100, block_size=4):
+    def present(self, wait_ms=100, block_size=4, iterations=5):
         """Simulate a present-themed LED animation with red, yellow, and blue blocks moving in from the bottom,
         and green blocks moving in from the top, meeting in the middle."""
         colors = [
@@ -301,48 +308,44 @@ class LEDController:
             Color(0, 0, 255)     # Blue
         ]
 
-        # Set initial colors for each LED based on their position
-        for i in range(self.strip.numPixels()):
-            if i < self.strip.numPixels() // 2:
-                self.strip.setPixelColor(i, Color(0, 0, 0))  # Clear for the top half
-            else:
-                self.strip.setPixelColor(i, Color(0, 0, 0))  # Turn off the bottom half
-
-        self.strip.show()
-        time.sleep(wait_ms / 1000.0)
-
-        # Move in from the bottom and top simultaneously
-        for j in range(self.strip.numPixels() // 2):
-            if self.stop_animation: # Check for interruption
+        for _ in range(iterations):
+            if self.stop_animation:  # Check for interruption
                 break
 
-            for i in range(j, j + block_size):
-                self.strip.setPixelColor(i, colors[i % block_size])  # Move in from the bottom
-
-            for i in range(self.strip.numPixels() - j - 1, self.strip.numPixels() - j - 1 - block_size, -1):
-                self.strip.setPixelColor(i, colors[i % block_size])  # Move in from the top
+            # Set initial colors for each LED based on their position
+            for i in range(self.strip.numPixels()):
+                if i < self.strip.numPixels() // 2:
+                    self.strip.setPixelColor(i, Color(0, 0, 0))  # Clear for the top half
+                else:
+                    self.strip.setPixelColor(i, Color(0, 0, 0))  # Turn off the bottom half
 
             self.strip.show()
             time.sleep(wait_ms / 1000.0)
 
-        for j in range(self.strip.numPixels() // 2 - 1, block_size - 1, -1):
-            if self.stop_animation: # Check for interruption
-                break
-            
-            # Turn off the LEDs in the bottom half
-            for i in range(self.strip.numPixels() - j - block_size, self.strip.numPixels() - j):
-                self.strip.setPixelColor(i, Color(0, 0, 0))
+            # Move in from the bottom and top simultaneously
+            for j in range(self.strip.numPixels() // 2):
+                if self.stop_animation: # Check for interruption
+                    break
 
-            # Move the bottom color up
-            for i in range(self.strip.numPixels() - j - block_size, self.strip.numPixels() - j):
-                self.strip.setPixelColor(i, colors[i % block_size])
+                for i in range(j, j + block_size):
+                    self.strip.setPixelColor(i, colors[i % block_size])  # Move in from the bottom
+
+                for i in range(self.strip.numPixels() - j - 1, self.strip.numPixels() - j - 1 - block_size, -1):
+                    self.strip.setPixelColor(i, colors[i % block_size])  # Move in from the top
+
+                self.strip.show()
+                time.sleep(wait_ms / 1000.0)
+
+            # Clear the strip by turning off all lights
+            for i in range(self.strip.numPixels()):
+                self.strip.setPixelColor(i, 0)
 
             self.strip.show()
             time.sleep(wait_ms / 1000.0)
 
-        # Turn off all LEDs
+        # Clear the remaining present pixels
         for i in range(self.strip.numPixels()):
-            self.strip.setPixelColor(i, Color(0, 0, 0))
+            self.strip.setPixelColor(i, 0)
 
         self.strip.show()
 
