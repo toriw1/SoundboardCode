@@ -111,7 +111,7 @@ class SongGUI(tk.Tk):
                 self.song_number = 8
             elif key == '9':
                 self.song_number = 9
-            elif key == '10':
+            elif key == '0':
                 # Handle '0' as '10'
                 self.song_number = 10
             elif key.lower() == 'a':
