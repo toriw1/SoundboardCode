@@ -11,7 +11,7 @@ class LEDController:
     INCREMENT = -3
     DECREMENT = -4
 
-    def __init__(self, led_count=300, led_pin=18, led_brightness=65):
+    def __init__(self, led_count=300, led_pin=18, led_brightness=50):
         # LED strip configuration
         self.LED_COUNT = led_count
         self.LED_PIN = led_pin

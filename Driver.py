@@ -1,6 +1,5 @@
 import subprocess
 import threading
-import time
 from SongGUI import SongGUI
 
 def led_thread():
